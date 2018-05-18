@@ -34,8 +34,8 @@
 
 
   <ion-list>
-    <ion-item-sliding *ngFor="let trans of transactions; let i = index" (click)="presentPopover($event, trans.desc)">
-      <ion-item>
+    <ion-item-sliding *ngFor="let trans of transactions; let i = index">
+      <ion-item (click)="presentPopover($event, trans.desc)">
         <ion-note>{{trans.created | dataformat }}</ion-note>
         <h2>{{trans.carname+" ("+trans.drivername +")"}} </h2>
         <!--<p></p>-->

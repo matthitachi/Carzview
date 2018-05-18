@@ -124,7 +124,7 @@ export class CarserviceProvider {
   }
 
   GetAllCars() {
-    let option = [""];
+    // let option = [""];
     let query = "Select id, name, model, color, plate_number, desc, worth, cost, image  from cars where trash = 0";
     return this.db.execQuery(query).then((response) => {
       console.log(response);
@@ -179,7 +179,7 @@ export class CarserviceProvider {
   }
 
   countCar() {
-    let query = "SELECT Count(*) as count FROM cars";
+    let query = "SELECT Count(*) as count FROM cars where trash = 0";
     return this.db.execQuery(query).then((response) => {
       console.log(response);
       if (response.rows.length > 0) {

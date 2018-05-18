@@ -32,7 +32,7 @@ export class CreatetransactionsPage {
     this.transactionForm = formBuilder.group({
       amount: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       driveroptions: [1, Validators.required],
-      caroptions: [1, Validators.required],
+      caroptions: ['', Validators.required],
       desc: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
       // var: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
     });

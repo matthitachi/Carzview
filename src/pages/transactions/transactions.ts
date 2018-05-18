@@ -51,6 +51,8 @@ export class TransactionsPage {
       console.log(res);
       if (res.status) {
         this.transactions = res.data;
+      } else {
+        this.utility.callToast("No data Found", 'alert', false);
       }
     });
   }

@@ -241,7 +241,7 @@ export class UserserviceProvider {
   }
 
   countDriver() {
-    let query = "SELECT Count(*) as count FROM users";
+    let query = "SELECT Count(*) as count FROM users where trash = 0";
     return this.db.execQuery(query).then((response) => {
       console.log(response);
       if (response.rows.length > 0) {

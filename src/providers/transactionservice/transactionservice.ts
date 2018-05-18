@@ -41,7 +41,7 @@ export class TransactionserviceProvider {
 
   deleteTrans(id) {
     let options = [id];
-    let query = "Update transaction Set trash = 1 where id = ?";
+    let query = "Update transactions Set trash = 1 where id = ?";
     return this.db.execQuery(query, options).then((response) => {
       console.log(response);
       if (response.rowsAffected > 0) {
@@ -59,7 +59,7 @@ export class TransactionserviceProvider {
 
   getAllTrans(limit = 50, option?: string, value?: number) {
     let query = "Select transactions.id as id, name, username, amount, transactions.desc as desc, transactions.created as created  from transactions, users, cars where " +
-      "transactions.car = cars.id and users.carid = transactions.car";
+      "transactions.car = cars.id and users.carid = transactions.car and transactions.trash = 0";
     let queryaddition: string = "";
     let options = [];
     if (option == 'car') {
@@ -132,14 +132,14 @@ export class TransactionserviceProvider {
   }
 
   totalEarnings(selectby = "", id?: number) {
-    let query = "Select sum(amount) as total from transactions";
+    let query = "Select sum(amount) as total from transactions where trash = 0";
     let optional = "";
     let options = [];
     if (selectby == 'car') {
-      optional = " where car = ?";
+      optional = " and car = ?";
       options.push(id);
     } else if (selectby == 'driver') {
-      optional = " where user = ?";
+      optional = " and user = ?";
       options.push(id);
     } else {
       options = [];
@@ -177,7 +177,7 @@ export class TransactionserviceProvider {
       option = '%Y';
     }
     let options = [option, option];
-    let query = "Select sum(amount) as total from transactions where strftime(?,created) = strftime(?, 'now')";
+    let query = "Select sum(amount) as total from transactions where strftime(?,created) = strftime(?, 'now') and trash = 0";
     return this.db.execQuery(query, options).then((response) => {
       console.log(response.rows.item(0));
       if (response.rows.length > 0) {
@@ -226,7 +226,7 @@ export class TransactionserviceProvider {
 
     // let option = [limit];
     let query = "Select DISTINCT  transactions.id as id, name, username, amount, transactions.desc as desc, transactions.created as created  from transactions, users, cars where " +
-      "transactions.car = cars.id and users.carid = transactions.car";
+      "transactions.car = cars.id and users.carid = transactions.car  and transactions.trash = 0";
     query = query + datequery + searchbyquery + orderQuery + limitquery;
     console.log(query);
     console.log(JSON.stringify(options));
