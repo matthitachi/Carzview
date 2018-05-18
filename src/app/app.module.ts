@@ -22,6 +22,11 @@ import {DashboardPageModule} from "../pages/dashboard/dashboard.module";
 import {UploadfileServiceProvider} from "../providers/uploadfile-service/uploadfile-service";
 import {Camera} from "@ionic-native/camera";
 import {File} from "@ionic-native/file";
+import {FilePath} from "@ionic-native/file-path";
+import {UpdateusersPage} from "../pages/updateusers/updateusers";
+import {UpdatecarsPage} from "../pages/updatecars/updatecars";
+import {UpdateusersPageModule} from "../pages/updateusers/updateusers.module";
+import {UpdatecarsPageModule} from "../pages/updatecars/updatecars.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import {File} from "@ionic-native/file";
     IonicStorageModule.forRoot(),
     LoginPageModule,
     SignupPageModule,
-    DashboardPageModule
+    DashboardPageModule,
+    UpdateusersPageModule,
+    UpdatecarsPageModule
+
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +51,9 @@ import {File} from "@ionic-native/file";
     HomePage,
     LoginPage,
     SignupPage,
-    DashboardPage
+    DashboardPage,
+    UpdateusersPage,
+    UpdatecarsPage
   ],
   providers: [
     StatusBar,
@@ -56,7 +67,9 @@ import {File} from "@ionic-native/file";
     TransactionserviceProvider,
     UploadfileServiceProvider,
     Camera,
-    File
+    File,
+    FilePath,
+    CarserviceProvider
 
   ]
 })

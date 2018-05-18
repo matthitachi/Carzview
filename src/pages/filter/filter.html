@@ -1,0 +1,69 @@
+<!--
+  Generated template for the FilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="display:inline-block; padding: 10px 12px;">Filter</ion-title>
+    <button ion-button (click)="cancel()" float-right>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div text-center class="toplist">
+    <ion-title>Filter Transactions</ion-title>
+    <ion-note color="primary">filter with date or keyword, also select number of records to be displayed.</ion-note>
+  </div>
+  <form (submit)="filter()">
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">From (Select records from date)</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="from"
+                      name="from"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">To (Select records till date)</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD MMMM YYYY" [(ngModel)]="to" name="to"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Limit (display record No.)</ion-label>
+        <ion-select [(ngModel)]="limit" name="limit">
+          <ion-option value="10" selected>10</ion-option>
+          <ion-option value="50">50</ion-option>
+          <ion-option value="100">100</ion-option>
+          <ion-option value="299">200</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Date order(ASC or DESC)</ion-label>
+        <ion-select [(ngModel)]="order" name="order">
+          <ion-option value="ASC">Ascending</ion-option>
+          <ion-option value="DESC">Descending</ion-option>
+        </ion-select>
+
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary">Search By(search Driver or Cars)</ion-label>
+        <ion-select [(ngModel)]="searchby" name="searchby">
+          <ion-option value="" selected>empty</ion-option>
+          <ion-option value="Driver">Driver</ion-option>
+          <ion-option value="Car">Cars</ion-option>
+        </ion-select>
+
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Enter keyword" [(ngModel)]="keyword" name="keyword"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+
+    <button ion-button outline secondary full margin-top type="submit">filter</button>
+  </form>
+</ion-content>

@@ -14,15 +14,15 @@ export class DbProvider {
     location: "default",
   };
   userTable = "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username CHAR(20), fname TEXT, lname TEXT, " +
-    "email CHAR(50), role CHAR(20), carid INTEGER REFERENCES cars(id), image TEXT, password TEXT, trash INT, updated TEXT, created TEXT  )";
+    "email CHAR(50), role CHAR(20), phone TEXT, carid INTEGER REFERENCES cars(id), image TEXT, desc TEXT, password TEXT, trash INT, updated TEXT, created TEXT  )";
 
 
   carsTable = "CREATE TABLE IF NOT EXISTS cars(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, model TEXT, color TEXT, " +
-    "plate_number CHAR(50), cost INT, worth INTEGER, image TEXT, trash INT, updated TEXT, created TEXT  )";
+    "plate_number CHAR(50), cost INT, worth INTEGER, image TEXT, desc TEXT, trash INT, updated TEXT, created TEXT  )";
 
 
   transactionTable = "CREATE TABLE IF NOT EXISTS transactions(id INTEGER PRIMARY KEY AUTOINCREMENT, car INTEGER REFERENCES cars(id), " +
-    "user INTEGER REFERENCES users(id), amount INT, trash INT, updated TEXT, created TEXT  )";
+    "user INTEGER REFERENCES users(id), amount INT, desc TEXT, trash INT, updated TEXT, created TEXT  )";
 
   dbTables: string[] = [this.carsTable, this.userTable, this.transactionTable];
   dataBaseObject: SQLiteObject;

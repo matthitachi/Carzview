@@ -1,0 +1,56 @@
+<!--
+  Generated template for the CreatetransactionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>New Transaction</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div text-center class="toplist">
+    <ion-title>Add New Payment</ion-title>
+    <ion-note color="primary">select a car first to show list of drivers for the car.</ion-note>
+  </div>
+
+  <form [formGroup]="transactionForm" (submit)="newTransacton()">
+    <ion-list>
+
+
+      <ion-item>
+        <ion-label>Select Cars</ion-label>
+        <ion-select formControlName="caroptions" #carsop (ionChange)="getDrivers(carsop.value)">
+          <ion-option *ngFor="let car of cars" value="{{car.id}}">{{car.carname}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Select Driver</ion-label>
+        <ion-select formControlName="driveroptions">
+          <ion-option *ngFor="let driver of drivers" value="{{driver.id}}">{{driver.firstname +' ' + driver.lastname + '
+            ' +(driver.username)}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Enter amount" formControlName="amount"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-textarea formControlName="desc" maxlength="100" placeholder="Write a description"></ion-textarea>
+      </ion-item>
+
+      <ion-item text-center>
+        <button ion-button type="submit" full outline> Add Transaction</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

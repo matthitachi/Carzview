@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UtilityProvider} from "../../providers/utility/utility";
 import {UserserviceProvider} from "../../providers/userservice/userservice";
@@ -21,7 +21,7 @@ export class LoginPage {
   signup = "SignupPage"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder,
-              public utility: UtilityProvider, public userservice: UserserviceProvider) {
+              public utility: UtilityProvider, public userservice: UserserviceProvider, public menuCtrl: MenuController) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
@@ -37,12 +37,14 @@ export class LoginPage {
     if (this.loginForm.status == 'VALID') {
       console.log(this.loginForm.value)
       this.userservice.authAdmin(this.loginForm.value).then((res) => {
-        status.message = "Successful Login";
+        status.message = res.message;
         status.cssclass = "success";
         status.action = false;
-
+        if (res.status) {
+          this.menuCtrl.enable(true);
+          this.navCtrl.setRoot('DashboardPage');
+        }
         this.utility.callToast(status.message, status.cssclass, status.action);
-        this.navCtrl.setRoot('DashboardPage');
       });
 
 

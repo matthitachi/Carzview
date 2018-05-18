@@ -1,0 +1,68 @@
+<!--
+  Generated template for the NewcarsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="display:inline-block; padding: 10px 12px;">Update Car</ion-title>
+    <button ion-button (click)="cancel()" float-right>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div text-center>
+    <ion-thumbnail round (click)="selectimage()">
+      <img [src]="imagePath" style="max-width: 100%; max-height: 30%">
+    </ion-thumbnail>
+  </div>
+  <form [formGroup]="carForm" (submit)="newCars()">
+    <ion-list>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Car name" formControlName="carname" [value]="oldData.carname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Car model" formControlName="model" [value]="oldData.model"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Car color" formControlName="color" [value]="oldData.color"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Car plate number" formControlName="platenumber"
+                   [value]="oldData.platenumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Car cost" formControlName="cost" [value]="oldData.cost"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Car worth" formControlName="worth" [value]="oldData.worth"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea formControlName="desc" maxlength="100" placeholder="Write a description" [value]="oldData.desc">
+          {{oldData.desc}}
+        </ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="hidden" placeholder="image" formControlName="image" [value]="imagePath"></ion-input>
+      </ion-item>
+
+      <ion-item text-center>
+        <button ion-button type="submit" full outline> Submit</button>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>
+

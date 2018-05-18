@@ -10,12 +10,95 @@
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="card-background-page">
+    <ion-card>
+      <img src="assets/imgs/cars1.jpg"/>
+      <div class="card-title">Cars View</div>
+      <div class="card-subtitle">Manage cars data</div>
+    </ion-card>
+  </div>
+  <div class="total-cards">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="analytics"></ion-icon>
+            Total Earning
+          </div>
+          <div class="card-subtitle"><h3>{{'N'+totalEarning+'.00'}}</h3></div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="pie"></ion-icon>
+            Todays Total
+          </div>
+          <div class="card-subtitle"><h3>{{'N'+dailyEarning+'.00'}}</h3></div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="pulse"></ion-icon>
+            This Month
+          </div>
+          <div class="card-subtitle"><h3>{{'N'+monthlyEarning+'.00'}}</h3></div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="stats"></ion-icon>
+            This Year
+          </div>
+          <div class="card-subtitle"><h3>{{'N'+yearlyEarning+'.00'}}</h3></div>
+        </ion-card>
 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="car"></ion-icon>
+            Cars No.
+          </div>
+          <div class="card-subtitle"><h3>{{carcount}} Cars</h3></div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+          <div class="card-title">
+            <ion-icon name="contact"></ion-icon>
+            Drivers No.
+          </div>
+          <div class="card-subtitle"><h3>{{drivercount}} Drivers</h3></div>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-list>
+    <ion-item-group *ngIf="transactions">
+      <ion-item-divider color="light">Latest Transactions</ion-item-divider>
+      <ion-item *ngFor="let trans of transactions; let i = index">
+        <span color="primary">{{'N'+trans.amount + '.00'}}</span>
+        <p color>{{"by: "+trans.drivername}}</p>
+        <div class="item-sec" item-right="">{{trans.created | dataformat}}</div>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

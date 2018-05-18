@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Storage} from "@ionic/storage";
-import {ToastController} from "ionic-angular";
+import {LoadingController, ToastController} from "ionic-angular";
 
 /*
   Generated class for the UtilityProvider provider.
@@ -11,7 +11,7 @@ import {ToastController} from "ionic-angular";
 @Injectable()
 export class UtilityProvider {
 
-  constructor(public storage: Storage, public toastCtrl: ToastController) {
+  constructor(public storage: Storage, public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
     console.log('Hello UtilityProvider Provider');
   }
 
@@ -40,6 +40,25 @@ export class UtilityProvider {
     }
 
     toast.present();
+  }
+
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    // setTimeout(() => {
+    //   loading.dismiss();
+    // }, 5000);
+    return loading;
+  }
+
+  nextweek(date) {
+    var today = new Date(date);
+    var nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+    return nextweek;
   }
 
 }

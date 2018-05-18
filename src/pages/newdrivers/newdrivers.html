@@ -43,21 +43,28 @@
       </ion-item>
 
       <ion-item>
+        <ion-input type="number" placeholder="Phone number" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label>Assigned Cars</ion-label>
         <ion-select formControlName="options">
-          <ion-option value="nes">Toyota</ion-option>
-          <ion-option value="n64">Nissan</ion-option>
-          <ion-option value="ps">Hyundia</ion-option>
-          <ion-option value="genesis">Pegeot</ion-option>
-          <ion-option value="saturn">Tundra</ion-option>
-          <ion-option value="snes">Ford</ion-option>
+          <ion-option *ngFor="let car of cars" value="{{car.id}}">{{car.carname}}</ion-option>
+          <!--<ion-option value="2">Nissan</ion-option>-->
+          <!--<ion-option value="3">Hyundia</ion-option>-->
+          <!--<ion-option value="4">Pegeot</ion-option>-->
+          <!--<ion-option value="5">Tundra</ion-option>-->
+          <!--<ion-option value="6">Ford</ion-option>-->
         </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-textarea formControlName="desc" maxlength="100" placeholder="Write a description"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-input type="hidden" placeholder="image" formControlName="image" [value]="imagePath"></ion-input>
       </ion-item>
       <ion-item text-center>
-        <button ion-button type="submit"> Submit</button>
+        <button ion-button type="submit" outline full> Add Driver</button>
       </ion-item>
     </ion-list>
   </form>

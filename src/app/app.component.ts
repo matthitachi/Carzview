@@ -27,13 +27,15 @@ export class MyApp {
       this.menu.enable(false)
       utility.isFirstinstall().then((res) => {
         if (!res) {
-          utility.onFirstinstall();
+          // utility.onFirstinstall();
           db.createTable();
           this.rootPage = SignupPage;
         } else {
           this.userservice.get_Admin_auth_Storage('Admin_auth').then((response) => {
+            // console.log(response);
+            console.log("Check for a loged in user" + JSON.stringify(response));
             if (response != null) {
-              console.log(response);
+
               this.menu.enable(true)
               this.rootPage = DashboardPage;
             } else {
@@ -48,7 +50,12 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.push(page);
+    if (page == 'DashboardPage') {
+      this.nav.setRoot(page);
+    } else {
+      this.nav.push(page);
+
+    }
     this.menu.close();
   }
 

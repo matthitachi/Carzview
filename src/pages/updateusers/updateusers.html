@@ -1,0 +1,78 @@
+<!--
+  Generated template for the NewdriversPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+  Generated template for the DriversPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title style="display:inline-block; padding: 10px 12px;">Update Driver</ion-title>
+    <button ion-button (click)="cancel()" float-right>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div text-center>
+    <ion-thumbnail round (click)="selectimage()">
+      <img [src]="imagePath" style="max-width: 100%; max-height: 30%">
+    </ion-thumbnail>
+  </div>
+  <form [formGroup]="driverForm" (submit)="newDriver()">
+    <ion-list>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Username" formControlName="username" [value]="oldData.username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="First Name" formControlName="fname" [value]="oldData.firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Last Name" formControlName="lname" [value]="oldData.lastname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Email" formControlName="email" email [value]="oldData.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" placeholder="Phone number" formControlName="phone" [value]="oldData.phone"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Assigned Cars</ion-label>
+        <ion-select formControlName="options">
+          <ion-option *ngFor="let car of cars" value="{{car.id}}" [selected]="(car.id == oldData.carid)">
+            {{car.carname}}
+          </ion-option>
+          <!--<ion-option value="2">Nissan</ion-option>-->
+          <!--<ion-option value="3">Hyundia</ion-option>-->
+          <!--<ion-option value="4">Pegeot</ion-option>-->
+          <!--<ion-option value="5">Tundra</ion-option>-->
+          <!--<ion-option value="6">Ford</ion-option>-->
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-textarea formControlName="desc" maxlength="100" placeholder="Write a description" [value]="oldData.desc">
+          {{oldData.desc}}
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-input type="hidden" placeholder="image" formControlName="image" [value]="imagePath"></ion-input>
+      </ion-item>
+      <ion-item text-center>
+        <button ion-button type="submit" outline full> Submit</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

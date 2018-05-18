@@ -7,17 +7,41 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>drivers
-      <button ion-button (click)="addDriver()" float-right>
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-title>
+    <ion-title style="display:inline-block; padding: 10px 12px;">Drivers List
 
+    </ion-title>
+    <button ion-button (click)="addDriver()" float-right>
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item-sliding *ngFor="let driver of drivers; let i = index">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="(driver.image =='')?'assets/imgs/add-user-male.png':driver.image">
+        </ion-avatar>
+        <h2>{{driver.firstname +' ' + driver.lastname +' (' + driver.username +')'}}</h2>
+        <p>{{driver.desc}}</p>
+        <button ion-button clear item-end (click)="driverView(driver)">View</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="editDriver(driver)">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" (click)="driverDelete(driver.id,i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
