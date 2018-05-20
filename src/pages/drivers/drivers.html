@@ -22,6 +22,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <div text-center *ngIf="drivers.length == 0">
+    <ion-note>no drivers record found</ion-note>
+  </div>
   <ion-list>
     <ion-item-sliding *ngFor="let driver of drivers; let i = index">
       <ion-item>

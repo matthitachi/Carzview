@@ -18,7 +18,7 @@ import {UtilityProvider} from "../../providers/utility/utility";
   templateUrl: 'drivers.html',
 })
 export class DriversPage {
-  drivers: Driver[];
+  drivers: Driver[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userservice: UserserviceProvider,
               public modalCtrl: ModalController, public utility: UtilityProvider) {

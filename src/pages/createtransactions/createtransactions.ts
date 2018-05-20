@@ -24,6 +24,7 @@ export class CreatetransactionsPage {
   transactionForm: FormGroup;
   cars: Car[];
   drivers: Driver[];
+  tsdate = new Date().toISOString();
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public navParams: NavParams,
               public utility: UtilityProvider, public userservice: UserserviceProvider,
@@ -33,8 +34,8 @@ export class CreatetransactionsPage {
       amount: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       driveroptions: [1, Validators.required],
       caroptions: ['', Validators.required],
-      desc: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
-      // var: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+      desc: ['', Validators.compose([Validators.maxLength(100)])],
+      dt: [new Date().toISOString(), Validators.compose([Validators.required])],
     });
   }
 
@@ -64,6 +65,8 @@ export class CreatetransactionsPage {
     console.log(this.transactionForm.value);
     if (this.transactionForm.status == 'VALID') {
       console.log(this.transactionForm.value);
+      let dt = this.transactionForm.value.dt.replace('T', ' ');
+      this.transactionForm.value.dt = dt.substr(0, 19);
 
       this.transervice.createTransaction(this.transactionForm.value).then((response: any) => {
         console.log(response);

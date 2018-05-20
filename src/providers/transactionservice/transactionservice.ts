@@ -18,9 +18,9 @@ export class TransactionserviceProvider {
 
   createTransaction(data) {
 
-    let option = [data.caroptions, data.driveroptions, data.amount, data.desc, 0];
+    let option = [data.caroptions, data.driveroptions, data.amount, data.desc, 0, data.dt];
     let query = "Insert into transactions (car, user, amount, desc, trash, updated, created) " +
-      "values (?,?,?,?,?,datetime('now', 'localtime'),datetime('now', 'localtime'))";
+      "values (?,?,?,?,?,datetime('now', 'localtime'),?)";
     return this.db.execQuery(query, option).then((response) => {
       console.log(response);
 
@@ -59,7 +59,7 @@ export class TransactionserviceProvider {
 
   getAllTrans(limit = 50, option?: string, value?: number) {
     let query = "Select transactions.id as id, name, username, amount, transactions.desc as desc, transactions.created as created  from transactions, users, cars where " +
-      "transactions.car = cars.id and users.carid = transactions.car and transactions.trash = 0";
+      "transactions.car = cars.id and users.carid = transactions.car and users.id = transactions.user and transactions.trash = 0";
     let queryaddition: string = "";
     let options = [];
     if (option == 'car') {
@@ -226,7 +226,7 @@ export class TransactionserviceProvider {
 
     // let option = [limit];
     let query = "Select DISTINCT  transactions.id as id, name, username, amount, transactions.desc as desc, transactions.created as created  from transactions, users, cars where " +
-      "transactions.car = cars.id and users.carid = transactions.car  and transactions.trash = 0";
+      "transactions.car = cars.id and users.carid = transactions.car  and users.id = transactions.user and transactions.trash = 0";
     query = query + datequery + searchbyquery + orderQuery + limitquery;
     console.log(query);
     console.log(JSON.stringify(options));
@@ -246,7 +246,4 @@ export class TransactionserviceProvider {
       // return {status:false, message:"An error occured"};
     });
   }
-
-
-
 }

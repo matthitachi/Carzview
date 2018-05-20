@@ -33,7 +33,7 @@
       <ion-item>
         <ion-label>Select Driver</ion-label>
         <ion-select formControlName="driveroptions">
-          <ion-option *ngFor="let driver of drivers" value="{{driver.id}}">{{driver.firstname +' ' + driver.lastname + '
+          <ion-option *ngFor="let driver of drivers" value="{{driver.id}}">{{driver.firstname +' ' + driver.lastname +'
             ' +(driver.username)}}
           </ion-option>
         </ion-select>
@@ -41,6 +41,11 @@
 
       <ion-item>
         <ion-input type="number" placeholder="Enter amount" formControlName="amount"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="primary">From (Select records from date)</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD MMMM YYYY" formControlName="dt"></ion-datetime>
       </ion-item>
 
 

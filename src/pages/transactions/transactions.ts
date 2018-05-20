@@ -18,7 +18,7 @@ import {UtilityProvider} from "../../providers/utility/utility";
   templateUrl: 'transactions.html',
 })
 export class TransactionsPage {
-  transactions: Transaction[];
+  transactions: Transaction[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public transervice: TransactionserviceProvider,
               public modalCtrl: ModalController, public popoverCtrl: PopoverController, public utility: UtilityProvider) {

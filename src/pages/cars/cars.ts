@@ -18,7 +18,7 @@ import {UtilityProvider} from "../../providers/utility/utility";
   templateUrl: 'cars.html',
 })
 export class CarsPage {
-  cars: Car[];
+  cars: Car[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public carservice: CarserviceProvider,
               public modalCtrl: ModalController, public utility: UtilityProvider) {
